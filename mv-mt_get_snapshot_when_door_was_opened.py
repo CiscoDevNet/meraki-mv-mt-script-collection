@@ -5,6 +5,8 @@ import time
 import os
 import json
 
+# This feature is now included in the Meraki Dashboard!
+
 meraki_api_key = ""
 network_id = ""
 

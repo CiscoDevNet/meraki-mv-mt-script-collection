@@ -2,32 +2,38 @@
 
 This script collection helps you getting started to get data out of Meraki MV cameras and Meraki MT sensors from the Cloud and via MQTT locally.
 
+![](images/meraki-iot-dev-interfaces.jpg)
+
 ## Prerequisites & Installation
 
-(1) Python dependencies: Install on your own the required Python libraries which are *different* for each script.
+1. Python dependencies: Install on your own the required Python libraries which are *different* for each script.
 
-(2) Running Mosquitto MQTT broker (for MQTT scripts only)
+2. Run the Mosquitto MQTT broker (for MQTT scripts only)
 
 ```
 docker pull ecplipse-mosquitto:1.6
 docker run -p 1883:1883 eclipse-mosquitto:1.6
 ```
 
-(3) Setup MQTT broker on the Meraki dashboard (for MQTT scripts only.
+3. Set the MQTT broker configuration on the Meraki dashboard (for MQTT scripts only).
 
-## Get historical sensor readings from MT sensors
+## MT sensor scripts
+
+### Get historical sensor readings from MT sensors
 
 **Script**: `mt_get_historical_sensor_readings.py`
 
 Get historical sensor readings based your defined timespan and granularity.
 
-## Get latest sensor reading from MT sensors
+### Get latest sensor reading from MT sensors
 
 **Script**: `mt_get_latest_sensor_reading.py`
 
 Get the latest sensor reading from your desired sensor.
 
-## Machine learning inference with RTSP stream
+## MV camera scripts
+
+### Machine learning inference with RTSP stream
 
 **Script**: `mv_custom_ml_model_inference_tensorflow.py`
 
@@ -35,7 +41,13 @@ This script shows how you can get the live video stream from the MV camera and c
 
 In this example, the image will be cropped at first and then predicted against the model.
 
-## Getting MQTT data from MV camera:
+### Machine learning inference on MV camera (Custom Vision)
+
+**Script**: `mv_get_mqtt_custom_vision_coco.py`
+
+Deploy your own ML model directly on the camera and get the object detections via MQTT stream from the camera. You can find the pre-trained tflite model in the folder `model`.
+
+### Getting MQTT data from MV camera:
  
 **Script**: `mv_get_mqtt_data.py`
 
@@ -63,13 +75,15 @@ Lux: 7.0
 Audio Level (dB): -42
 ```
 
-## Get RTSP stream from MV camera
+### Get RTSP stream from MV camera
 
 **Script**: `mv_read_rtsp_stream.py`
 
 Simply receive the RTSP video stream from the MV camera with OpenCV.
 
-## Get camera snapshot when door sensor got triggered
+## MV camera + MT sensor scripts
+
+### Get camera snapshot when door sensor got triggered
 
 **Script**: `mv-mt_get_snapshot_when_door_was_opened.py`
 
@@ -78,6 +92,8 @@ Specify the serial number of the MT door sensor and also the serial number of th
 The snapshots will then be downloaded, the name of the .jpeg file is the UNIX timestamp.
 
 ## Versioning
+
+**2.0** - Added custom vision script + videos.
 
 **1.0** - Inital commit with 6 sample scripts.
 
